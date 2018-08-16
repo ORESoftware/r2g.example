@@ -2,7 +2,8 @@
 ### r2g example project - how to use r2g for publishing NPM packages
 
 --------------------
-Watch this video first:
+
+This readme file accompanies the following video:
 
 
 --------------------
@@ -21,7 +22,9 @@ Remember that r2g can catch 4 types of problems:
 
 ---------------------
 
-### To learn how r2g works, do these steps in order:
+## To learn how r2g works, do these steps in order:
+
+<br>
 
 1. Clone this repo: `$ git clone https://github.com/ORESoftware/r2g.example.git`
 
@@ -63,8 +66,8 @@ Remember that r2g can catch 4 types of problems:
 7. Run `$ r2g test`
 
 >
->  <b> => It will output: </b>
->  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/oleg/.r2g/temp/copy/r2g.example/dist
+>  <b> It will output: </b>  
+>  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/copy/r2g.example/dist
 >
 
 <br>
@@ -72,8 +75,8 @@ Remember that r2g can catch 4 types of problems:
 8. Go into test/simple.js and switch to `require('r2g.example')` instead of `require('../dist')`, then run `$ r2g test`
 
 >
->  <b> => It will output: </b>  
->  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/oleg/.r2g/temp/project/node_modules/r2g.example/dist
+>  <b> It will output: </b>  
+>  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/project/node_modules/r2g.example/dist
 >
 
 <br>
@@ -87,7 +90,7 @@ in a way that tests itself as a dependency of itself and having been previously 
 10. Now, go into src/index.ts. Change r2gSmokeTest to r2gSmokeTestFoo. Run `$ r2g test`.
 
 >
->  => It will output:  
+>  <b> It will output: </b>   
 >  r2g: phase-S: A module failed to export a function from "main" with key "r2gSmokeTest".
 >  r2g: phase-S: The module/package missing this export has the following name:
 >  r2g: phase-S: r2g.example
@@ -101,7 +104,7 @@ to r2gSmokeTestFoo, lulz.
 11. Change r2gSmokeTestFoo back to r2gSmokeTest, but return false from the function instead of true.
 
 >
->  => It will output:  
+>  <b> It will output: </b>   
 >  r2g: phase-S: At least one exported "r2gSmokeTest" function failed.
 >  r2g: phase-S: Error: [ { path: 'r2g.example', result: false } ]
 >
@@ -137,6 +140,80 @@ create a directory in your project called .r2g which will house tests used for s
   readme.md
 ```
 
+14. The tests in the .r2g/tests folder are tests that will be copied like so:
 
+```
+project/
+ node_modules/
+  r2g.example/
+    .r2g/
+      fixtures/
+      tests/
+```
+
+to:
+
+```
+project/
+ fixtures/    # copied here
+ tests/       # copied here
+ node_modules/
+  r2g.example/
+    .r2g/
+      fixtures/
+      tests/
+```
+
+Where project is a temp directory that will load your package a dependency and run tests against it.
+
+15. In `.r2g/tests/smoke-test.1.js`, you will see something like this:
+
+```js
+#!/usr/bin/env node
+'use strict';
+
+const assert = require('assert');
+const path = require('path');
+const cp = require('child_process');
+const os = require('os');
+const fs = require('fs');
+const EE = require('events');
+
+process.on('unhandledRejection', (reason, p) => {
+  // note: unless we force process to exit with 1, process may exit with 0 upon an unhandledRejection
+  console.error(reason);
+  process.exit(1);
+});
+
+// your test goes here
+
+```
+
+Add these lines at the end:
+
+```js
+console.error('whoops');
+process.exit(1);
+
+```
+
+Now run `r2g test`. You will see:
+
+>
+> r2g: About to run tests in your .r2g/tests dir.
+> r2g: phase-T: Now we are in phase-T...
+> r2g: phase-T: whoops
+> r2g: [r2g/error] an r2g test failed => a script in this dir failed to exit with code 0: /home/you/.r2g/temp/project/tests
+>
+
+To fix this, simply change `process.exit(1)` to `process.exit(0)`. You can put any tests you want in `.r2g/tests`
+
+__________________________________________________________________
+
+
+You have now see how the basic three phases work, S,Z,T. They just have random character names.
+They should have been in alphabetical order, but S,Z,T is the order in which they are currently run.
+
+To learn more about the  --pack / --full  options, we will save those for another day.
 
 
