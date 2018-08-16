@@ -26,19 +26,19 @@ Remember that r2g can catch 4 types of problems:
 
 <br>
 
-1. Clone this repo: ```$ git clone https://github.com/ORESoftware/r2g.example.git`
+1. Clone this repo: ```$ git clone https://github.com/ORESoftware/r2g.example.git```
 
 <br>
 
-2. install r2g globally: ```$ npm i -g r2g`
+2. install r2g globally: ```$ npm i -g r2g```
 
 <br>
 
 3. Run ```$ r2g test``` at the cloned project root
 
 >
->  => The first problem is that it says it can't find our package ("r2g.example"). That is because we haven't created the files
->   in the dist/ folder yet. So we build/transpile with tsc. This is the first kind of problem r2g can catch.
+>  => The first problem is that it says it can't find our package "r2g.example". That is because we haven't created the files
+>   in the dist folder yet. So we build/transpile with tsc. This is the first kind of problem r2g can catch.
 >
 
 <br>
@@ -58,24 +58,26 @@ Remember that r2g can catch 4 types of problems:
 6. Go into package.json and change "r2g.test" to "r2g.testnot". Now, r2g will default to the ```$ npm test``` script.
 
 >
->  => In this case, ```npm test``` will run ```node test/simple.js`
+>  => In this case, ```npm test``` will run ```node test/simple.js```
 >
 
 <br>
 
-7. Run ```$ r2g test`
+7. Run ```$ r2g test```
 
 >
 >  <b> It will output: </b>  
+>
 >  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/copy/r2g.example/dist
 >
 
 <br>
 
-8. Go into test/simple.js and switch to ```require('r2g.example')``` instead of ```require('../dist')```, then run ```$ r2g test`
+8. Go into test/simple.js and switch to ```require('r2g.example')``` instead of ```require('../dist')```, then run ```$ r2g test```
 
 >
 >  <b> It will output: </b>  
+>
 >  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/project/node_modules/r2g.example/dist
 >
 
@@ -87,35 +89,37 @@ in a way that tests itself as a dependency of itself and having been previously 
 
 <br>
 
-10. Now, go into src/index.ts. Change r2gSmokeTest to r2gSmokeTestFoo. Run ```$ r2g test`.
+10. Now, go into src/index.ts. Change `r2gSmokeTest` to `r2gSmokeTestFoo`. Run ```$ r2g test```.
 
 >
 >  <b> It will output: </b>   
+>
 >  r2g: phase-S: A module failed to export a function from "main" with key "r2gSmokeTest".
 >  r2g: phase-S: The module/package missing this export has the following name:
 >  r2g: phase-S: r2g.example
 >
 
-This means that your main (dist/index.js) failed to export a function with name r2gSmokeTest, because we changed it
-to r2gSmokeTestFoo, lulz.
+This means that your main (dist/index.js) failed to export a function with name `r2gSmokeTest`, because we changed it
+to `r2gSmokeTestFoo`, lulz.
 
 <br>
 
-11. Change r2gSmokeTestFoo back to r2gSmokeTest, but return false from the function instead of true.
+11. Change `r2gSmokeTestFoo` back to `r2gSmokeTest`, but return false from the function instead of true.
 
 >
->  <b> It will output: </b>   
+>  <b> It will output: </b>
+>   
 >  r2g: phase-S: At least one exported "r2gSmokeTest" function failed.
 >  r2g: phase-S: Error: [ { path: 'r2g.example', result: false } ]
 >
 
 <br>
 
-12. Your r2gSmokeTest function must return true, and no other value is acceptable. To skip phase-S, use --skip=s or -s.
+12. Your r2gSmokeTest function must return `true`, and no other value is acceptable. To skip phase-S, use `--skip=s` or `-s`.
 
 <br>
 
-As an example, you can try using this for your r2gSmokeTest:
+As an example, you can try using this for your `r2gSmokeTest`:
 
 ```js
 export const r2gSmokeTest = async () => {
@@ -166,7 +170,7 @@ project/
 
 Where project is a temp directory that will load your package a dependency and run tests against it.
 
-15. In ```.r2g/tests/smoke-test.1.js```, you will see something like this:
+15. In `````.r2g/tests/smoke-test.1.js```, you will see something like this:
 
 ```js
 #!/usr/bin/env node
@@ -197,7 +201,7 @@ process.exit(1);
 
 ```
 
-Now run ```r2g test`. You will see:
+Now run ```r2g test```. You will see:
 
 >
 > r2g: About to run tests in your .r2g/tests dir.
@@ -206,7 +210,7 @@ Now run ```r2g test`. You will see:
 > r2g: [r2g/error] an r2g test failed => a script in this dir failed to exit with code 0: /home/you/.r2g/temp/project/tests
 >
 
-To fix this, simply change ```process.exit(1)``` to ```process.exit(0)`. You can put any tests you want in ```.r2g/tests`
+To fix this, simply change ```process.exit(1)``` to ```process.exit(0)```. You can put any tests you want in `````.r2g/tests`
 
 __________________________________________________________________
 
