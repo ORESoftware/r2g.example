@@ -1,3 +1,3 @@
 
 
-### Assets are files that get included in both git and npm
+### Assets are files that get included/tracked in both git and npm
