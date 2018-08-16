@@ -18,5 +18,5 @@ const example = require('../dist');
 
 console.log(
   'Directory path which contains the r2g.example index file:',
-  chalk.magentaBright(example.getDirName())
+  chalk.magenta(example.getDirName())
 );

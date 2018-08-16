@@ -26,7 +26,7 @@ Remember that r2g can catch 4 types of problems:
 
 <br>
 
-1. <b> Clone this repo: `$ git clone https://github.com/ORESoftware/r2g.example.git` </b>
+1. <b> Clone this repo: `$ git clone https://github.com/ORESoftware/r2g.example.git` and run `npm i` </b>
 
 <br>
 
@@ -146,18 +146,18 @@ create a directory in your project called .r2g which will house tests used for s
 
 14. <b> The tests in the .r2g/tests folder are tests that will be copied like so: </b>
 
-`
+```
 project/
  node_modules/
   r2g.example/
     .r2g/
       fixtures/
       tests/
-`
+```
 
 to:
 
-`
+```
 project/
  fixtures/    # copied here
  tests/       # copied here
@@ -166,7 +166,7 @@ project/
     .r2g/
       fixtures/
       tests/
-`
+```
 
 Where project is a temp directory that will load your package a dependency and run tests against it.
 
@@ -217,6 +217,12 @@ __________________________________________________________________
 You have now see how the basic three phases work, S,Z,T. They just have random character names.
 They should have been in alphabetical order, but S,Z,T is the order in which they are currently run.
 
-To learn more about the  --pack / --full  options, we will save those for another day.
+<br>
+
+To learn more about the `--full`  option, we will save that for another day.
+
+<br> 
+
+We will also save examples of testing CLI applications for another day.
 
 

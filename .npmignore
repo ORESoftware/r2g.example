@@ -11,9 +11,7 @@ build/Release
 src
 docs
 .tscmultiwatch
-.docker.r2g
 .circleci
-.suman
 
 ### files
 .editorconfig
