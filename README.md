@@ -21,13 +21,13 @@ Remember that r2g can catch 4 types of problems:
 
 ---------------------
 
-Basic steps:
+### To learn how r2g works, do these steps in order:
 
 1. Clone this repo: `$ git clone https://github.com/ORESoftware/r2g.example.git`
 
 <br>
 
-2. install r2g globally - `$ npm i -g r2g`
+2. install r2g globally: `$ npm i -g r2g`
 
 <br>
 
@@ -63,7 +63,7 @@ Basic steps:
 7. Run `$ r2g test`
 
 >
->  => It will output: 
+>  <b> => It will output: </b>
 >  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/oleg/.r2g/temp/copy/r2g.example/dist
 >
 
@@ -72,7 +72,7 @@ Basic steps:
 8. Go into test/simple.js and switch to `require('r2g.example')` instead of `require('../dist')`, then run `$ r2g test`
 
 >
->  => It will output:  
+>  <b> => It will output: </b>  
 >  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/oleg/.r2g/temp/project/node_modules/r2g.example/dist
 >
 
@@ -108,11 +108,11 @@ to r2gSmokeTestFoo, lulz.
 
 <br>
 
-12. Your r2gSmokeTest function must return true, and no other value is acceptable. To skip this test, use --skip=s or -s.
+12. Your r2gSmokeTest function must return true, and no other value is acceptable. To skip phase-S, use --skip=s or -s.
 
 <br>
 
-For example, you can try using this for your r2gSmokeTest:
+As an example, you can try using this for your r2gSmokeTest:
 
 ```js
 export const r2gSmokeTest = async () => {
