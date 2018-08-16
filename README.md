@@ -16,8 +16,9 @@ See: https://github.com/ORESoftware/r2g
 Remember that r2g can catch 4 types of problems:
 
 1. Failure to build/transpile project before publishing, because the built files are not tracked by source control.
-2. Missing dependencies - when people install your package with the --production flag, your package might be missing deps.
-3. Files that are missing in the NPM tarball: your .npmignore file or "files" property in package.json might be too aggressive/passive.
+2. Missing dependencies - when people install your package with the `--production` flag, your package might be missing deps.
+3. Files that are missing in the NPM tarball: your [.npmignore](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) 
+file or ["files"](https://docs.npmjs.com/files/package.json#files) property in package.json might be too aggressive/passive.
 4. General/unknown problems that relate to using/running your package as a dependency, instead of directly.
 
 ---------------------
