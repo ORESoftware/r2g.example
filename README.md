@@ -55,12 +55,14 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 >
 >  <b> It will output: </b> 
 >
->  r2g: phase-S: You may have a missing dependency in your project, or a dependency that should be in "dependencies" not in "devDependencies".
->  r2g: phase-S: /home/oleg/.r2g/temp/project/smoke-tester.js:49
->  r2g: phase-S:             throw err;
->  r2g: phase-S:             ^
->  r2g: phase-S: 
->  r2g: phase-S: Error: Cannot find module 'rxjs'
+>```
+>r2g: phase-S: You may have a missing dependency in your project, or a dependency that should be in "dependencies" not in "devDependencies".
+>r2g: phase-S: /home/oleg/.r2g/temp/project/smoke-tester.js:49
+>r2g: phase-S:             throw err;
+>r2g: phase-S:             ^
+>r2g: phase-S: 
+>r2g: phase-S: Error: Cannot find module 'rxjs'
+>```
 >
 >  <br>
 >  <b> the problem is that 'rxjs' is listed in devDependencies, but it needs to be in dependencies. </b>
@@ -87,9 +89,11 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 7. <b> Run `$ r2g test` </b>
 
 >
->  <b> It will output: </b>  
+>  <b> It will output: </b>
 >
->  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/copy/r2g.example/dist
+>```
+>r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/copy/r2g.example/dist
+>```
 >
 
 <br>
@@ -97,9 +101,11 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 8. <b> Go into test/simple.js and switch to `require('r2g.example')` instead of `require('../dist')`, then run `$ r2g test` </b>
 
 >
->  <b> It will output: </b>  
+>  <b> It will output: </b>
 >
->  r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/project/node_modules/r2g.example/dist
+>```
+>r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/project/node_modules/r2g.example/dist
+>```
 >
 
 <br>
@@ -113,11 +119,13 @@ in a way that tests itself as a dependency of itself and having been previously 
 10. <b> Now, go into src/index.ts. Change `r2gSmokeTest` to `r2gSmokeTestFoo`. Run `$ r2g test`. </b>
 
 >
->  <b> It will output: </b>   
->
->  r2g: phase-S: A module failed to export a function from "main" with key "r2gSmokeTest".
->  r2g: phase-S: The module/package missing this export has the following name:
->  r2g: phase-S: r2g.example
+>  <b> It will output: </b>
+>   
+>```
+>r2g: phase-S: A module failed to export a function from "main" with key "r2gSmokeTest".
+>r2g: phase-S: The module/package missing this export has the following name:
+>r2g: phase-S: r2g.example
+>```
 >
 
 This means that your main (dist/index.js) failed to export a function with name `r2gSmokeTest`, because we changed it
@@ -130,8 +138,10 @@ to `r2gSmokeTestFoo`, lulz.
 >
 >  <b> It will output: </b>
 >   
->  r2g: phase-S: At least one exported "r2gSmokeTest" function failed.
->  r2g: phase-S: Error: [ { path: 'r2g.example', result: false } ]
+>```
+>r2g: phase-S: At least one exported "r2gSmokeTest" function failed.
+>r2g: phase-S: Error: [ { path: 'r2g.example', result: false } ]
+>```
 >
 
 <br>
