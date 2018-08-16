@@ -8,7 +8,7 @@ export const z = {
   }
 };
 
-export const r2gSmokeTest = async () => {
+export const r2gSmokeTest = async () : Promise<boolean> => {
   // r2g command line app uses this exported function
   // must return boolean true to pass
   return Boolean(new Subject());

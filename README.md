@@ -48,15 +48,35 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 
 <br>
 
-5. <b> Run `$ r2g test`  # should pass </b>
+5. <b> Run `$ r2g test` </b>
 
 >
->  => You might notice "foobar test" in the output, during phase-Z.
+>  It should fail, with exit code 1.
+>
+>  <b> It will output: </b> 
+>
+>  r2g: phase-S: You may have a missing dependency in your project, or a dependency that should be in "dependencies" not in "devDependencies".
+>  r2g: phase-S: /home/oleg/.r2g/temp/project/smoke-tester.js:49
+>  r2g: phase-S:             throw err;
+>  r2g: phase-S:             ^
+>  r2g: phase-S: 
+>  r2g: phase-S: Error: Cannot find module 'rxjs'
+>
+>  <br>
+>  <b> the problem is that 'rxjs' is listed in devDependencies, but it needs to be in dependencies. </b>
+>
+
+5. <b> In package.json, move `"rxjs"` from `"devDependencies"` to `"dependencies"`, and run `$ r2g test` </b>
+
+>
+>  Now it should pass, with exit code 0.
+>  You might notice "foobar test" in the output, during phase-Z.
+>  Look in package.json at the r2g.test field, this is the default command to be run during phase-Z.
 >
 
 <br>
 
-6. <b> Go into package.json and change "r2g.test" to "r2g.testnot". Now, r2g will default to the `$ npm test` script. </b>
+6. <b> Go into package.json and change "r2g.test" to "r2g.testnot". Now, r2g will default to the `npm test` script. </b>
 
 >
 >  => In this case, `npm test` will run `node test/simple.js`
