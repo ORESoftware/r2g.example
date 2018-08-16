@@ -26,15 +26,15 @@ Remember that r2g can catch 4 types of problems:
 
 <br>
 
-1. Clone this repo: `$ git clone https://github.com/ORESoftware/r2g.example.git`
+1. Clone this repo: ```$ git clone https://github.com/ORESoftware/r2g.example.git`
 
 <br>
 
-2. install r2g globally: `$ npm i -g r2g`
+2. install r2g globally: ```$ npm i -g r2g`
 
 <br>
 
-3. Run `$ r2g test` at the cloned project root
+3. Run ```$ r2g test``` at the cloned project root
 
 >
 >  => The first problem is that it says it can't find our package ("r2g.example"). That is because we haven't created the files
@@ -43,11 +43,11 @@ Remember that r2g can catch 4 types of problems:
 
 <br>
  
-4. Run `$ tsc --watch`, from the root of the project. `npm i -g typescript` if you don't have `tsc` installed. 
+4. Run ```$ tsc --watch```, from the root of the project. ```npm i -g typescript``` if you don't have ```tsc``` installed. 
 
 <br>
 
-5. Run `$ r2g test`  # should pass
+5. Run ```$ r2g test```  # should pass
 
 >
 >  => You might notice "foobar test" in the output, during phase-Z.
@@ -55,15 +55,15 @@ Remember that r2g can catch 4 types of problems:
 
 <br>
 
-6. Go into package.json and change "r2g.test" to "r2g.testnot". Now, r2g will default to the `$ npm test` script.
+6. Go into package.json and change "r2g.test" to "r2g.testnot". Now, r2g will default to the ```$ npm test``` script.
 
 >
->  => In this case, `npm test` will run `node test/simple.js`
+>  => In this case, ```npm test``` will run ```node test/simple.js`
 >
 
 <br>
 
-7. Run `$ r2g test`
+7. Run ```$ r2g test`
 
 >
 >  <b> It will output: </b>  
@@ -72,7 +72,7 @@ Remember that r2g can catch 4 types of problems:
 
 <br>
 
-8. Go into test/simple.js and switch to `require('r2g.example')` instead of `require('../dist')`, then run `$ r2g test`
+8. Go into test/simple.js and switch to ```require('r2g.example')``` instead of ```require('../dist')```, then run ```$ r2g test`
 
 >
 >  <b> It will output: </b>  
@@ -82,12 +82,12 @@ Remember that r2g can catch 4 types of problems:
 <br>
 
 9. The difference between 7 and 8 is important. 7 loads the regular unpacked version of your package, and 8 will load a
-previously packed version of your package. Using 7 will `npm test` your package as usual. Using 8 will `npm test` your package
+previously packed version of your package. Using 7 will ```npm test``` your package as usual. Using 8 will ```npm test``` your package
 in a way that tests itself as a dependency of itself and having been previously packed with NPM pack.
 
 <br>
 
-10. Now, go into src/index.ts. Change r2gSmokeTest to r2gSmokeTestFoo. Run `$ r2g test`.
+10. Now, go into src/index.ts. Change r2gSmokeTest to r2gSmokeTestFoo. Run ```$ r2g test`.
 
 >
 >  <b> It will output: </b>   
@@ -130,7 +130,7 @@ create a directory in your project called .r2g which will house tests used for s
 
 <br>
 
-13. Run `r2g init` in your project root. You will get this new dir with this structure:
+13. Run ```r2g init``` in your project root. You will get this new dir with this structure:
 
 ```
 .r2g/
@@ -166,7 +166,7 @@ project/
 
 Where project is a temp directory that will load your package a dependency and run tests against it.
 
-15. In `.r2g/tests/smoke-test.1.js`, you will see something like this:
+15. In ```.r2g/tests/smoke-test.1.js```, you will see something like this:
 
 ```js
 #!/usr/bin/env node
@@ -197,7 +197,7 @@ process.exit(1);
 
 ```
 
-Now run `r2g test`. You will see:
+Now run ```r2g test`. You will see:
 
 >
 > r2g: About to run tests in your .r2g/tests dir.
@@ -206,7 +206,7 @@ Now run `r2g test`. You will see:
 > r2g: [r2g/error] an r2g test failed => a script in this dir failed to exit with code 0: /home/you/.r2g/temp/project/tests
 >
 
-To fix this, simply change `process.exit(1)` to `process.exit(0)`. You can put any tests you want in `.r2g/tests`
+To fix this, simply change ```process.exit(1)``` to ```process.exit(0)`. You can put any tests you want in ```.r2g/tests`
 
 __________________________________________________________________
 
