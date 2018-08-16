@@ -1,5 +1,5 @@
 {
-  "name": "typescript-library-skeleton",
+  "name": "r2g.example",
   "version": "0.0.1001",
   "description": "Semver-oriented TypeScript library skeleton.",
   "main": "dist/index.js",
@@ -12,8 +12,8 @@
     "test": "node test/simple.js",
     "postinstall": "./assets/postinstall.sh"
   },
-  "r2g":{
-    "test":"echo 'foobar test'"
+  "r2g": {
+    "testnot": "echo 'foobar test'"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,9 @@
     "url": "https://github.com/ORESoftware/typescript-library-skeleton/issues"
   },
   "homepage": "https://github.com/ORESoftware/typescript-library-skeleton#readme",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^2.4.1"
+  },
   "devDependencies": {
     "@types/core-js": "^0.9.46",
     "@types/node": "^9.6.2"
