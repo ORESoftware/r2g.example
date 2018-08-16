@@ -48,7 +48,7 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 
 <br>
 
-5. <b> Run `$ r2g test` </b>
+5. a. <b> Run `$ r2g test` </b>
 
 >
 >  It should fail, with exit code 1.
@@ -68,7 +68,7 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 >  <b> the problem is that 'rxjs' is listed in devDependencies, but it needs to be in dependencies. </b>
 >
 
-5. <b> In package.json, move `"rxjs"` from `"devDependencies"` to `"dependencies"`, and run `$ r2g test` </b>
+5. b. <b> In package.json, move `"rxjs"` from `"devDependencies"` to `"dependencies"`, and run `$ r2g test` </b>
 
 >
 >  Now it should pass, with exit code 0.
@@ -167,13 +167,13 @@ create a directory in your project called .r2g which will house tests used for s
 
 13. <b> Run `r2g init` in your project root. You will get this new dir with this structure: </b>
 
-`
+```
 .r2g/
   fixtures/
   tests/
   config.js
   readme.md
-`
+```
 
 14. <b> The tests in the .r2g/tests folder are tests that will be copied like so: </b>
 
@@ -255,5 +255,4 @@ To learn more about the `--full`  option, we will save that for another day.
 <br> 
 
 We will also save examples of testing CLI applications for another day.
-
 
