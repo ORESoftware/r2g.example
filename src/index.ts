@@ -1,7 +1,7 @@
 'use strict';
 
 export const z = {
-  foo: async () => {
+  async foo()  {
     return 'foo';
   }
 };
