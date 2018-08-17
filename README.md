@@ -174,6 +174,7 @@ create a directory in your project called .r2g which will house tests used for s
   config.js
   readme.md
 ```
+<br>
 
 14. <b> The tests in the .r2g/tests folder are tests that will be copied like so: </b>
 
@@ -200,6 +201,8 @@ project/
 ```
 
 Where project is a temp directory that will load your package a dependency and run tests against it.
+
+<br>
 
 15. <b> In `.r2g/tests/smoke-test.1.js`, you will see something like this: </b>
 
@@ -234,13 +237,15 @@ process.exit(1);
 Now run `r2g test`. You will see:
 
 >
-> r2g: About to run tests in your .r2g/tests dir.
-> r2g: phase-T: Now we are in phase-T...
-> r2g: phase-T: whoops
-> r2g: [r2g/error] an r2g test failed => a script in this dir failed to exit with code 0: /home/you/.r2g/temp/project/tests
+>```
+>r2g: About to run tests in your .r2g/tests dir.
+>r2g: phase-T: Now we are in phase-T...
+>r2g: phase-T: whoops
+>r2g: [r2g/error] an r2g test failed => a script in this dir failed to exit with code 0: /home/you/.r2g/temp/project/tests
+>```
 >
 
-To fix this, simply change `process.exit(1)` to `process.exit(0)`. You can put any tests you want in `.r2g/tests`
+To fix this, simply change `process.exit(1)` to `process.exit(0)`. You can put any tests you want in `.r2g/tests`.
 
 __________________________________________________________________
 
@@ -254,5 +259,6 @@ To learn more about the `--full`  option, we will save that for another day.
 
 <br> 
 
-We will also save examples of testing CLI applications for another day.
+We will also save examples of testing CLI applications for another day, however, testing CLI apps won't be
+that much different from testing importable libraries.
 
