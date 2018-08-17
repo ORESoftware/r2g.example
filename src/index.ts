@@ -33,8 +33,9 @@ export type EVCb<T> = (err: any, val?: T) => void;
 export const runZoom = (cb: EVCb<true>) => {
   
   const k = cp.spawn('bash');
+  const sh = path.resolve(__dirname + '/../assets/zoom.sh');
   
-  fs.createReadStream(path.resolve(__dirname + '/../assets/zoom.sh'))
+  fs.createReadStream(sh)
   .pipe(k.stdin)
   .once('error', cb);
   

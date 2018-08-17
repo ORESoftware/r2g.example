@@ -204,7 +204,7 @@ Where project is a temp directory that will load your package a dependency and r
 
 <br>
 
-15. part a. Copy the following contents to `.r2g/tests/smoke-test/2.js`:
+15. part a. Copy the following contents to `.r2g/tests/smoke-test.2.js`:
 
 ```js
 #!/usr/bin/env node
