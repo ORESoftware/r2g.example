@@ -204,7 +204,45 @@ Where project is a temp directory that will load your package a dependency and r
 
 <br>
 
-15. <b> In `.r2g/tests/smoke-test.1.js`, you will see something like this: </b>
+15. part a. Copy the following contents to `.r2g/tests/smoke-test/2.js`:
+
+```js
+#!/usr/bin/env node
+'use strict';
+
+const assert = require('assert');
+const path = require('path');
+const cp = require('child_process');
+const os = require('os');
+const fs = require('fs');
+const EE = require('events');
+
+
+process.on('unhandledRejection', (reason, p) => {
+  // unless we force process to exit with 1, process may exit with 0 upon an unhandledRejection
+  console.error(reason);
+  process.exit(1);
+});
+
+
+const example = require('r2g.example');
+
+example.runZoom((err,val) => {
+  
+  if(err){
+    throw err;
+  }
+  
+  if(val !== true){
+    throw new Error('Resolved value should be true.');
+  }
+  
+});
+
+```
+
+
+15. part b. <b> In `.r2g/tests/smoke-test.1.js`, you will see something like this: </b>
 
 ```js
 #!/usr/bin/env node
@@ -224,15 +262,17 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 // your test goes here
-
+// assert.strictEqual(true, false, 'whoops');
 ```
+<br>
 
-Add these lines at the end:
+Uncomment this line at the end:
 
 ```js
-console.error('whoops');
-process.exit(1);
+assert.strictEqual(true, false, 'whoops');
 ```
+
+<br>
 
 Now run `r2g test`. You will see:
 
@@ -240,18 +280,49 @@ Now run `r2g test`. You will see:
 >```
 >r2g: About to run tests in your .r2g/tests dir.
 >r2g: phase-T: Now we are in phase-T...
->r2g: phase-T: whoops
+>r2g: phase-T: AssertionError [ERR_ASSERTION]: whoops
 >r2g: [r2g/error] an r2g test failed => a script in this dir failed to exit with code 0: /home/you/.r2g/temp/project/tests
 >```
 >
 
-To fix this, simply change `process.exit(1)` to `process.exit(0)`. You can put any tests you want in `.r2g/tests`.
+<br>
+
+Note, in order to get phase-Z to pass:
+
+1. you will <b>also</b> have to remove the following line from `.npmignore`:
+
+<br>
+
+```
+assets/zoom.sh
+```
+
+That will get .r2g/tests/smoke-test.2.js to pass.
+
+<br>
+
+2. Change:
+
+```js
+assert.strictEqual(true, false, 'whoops');
+```
+
+to
+
+```js
+assert.strictEqual(true, true, 'whoops');
+```
+
+That will get .r2g/tests/smoke-test.1.js to pass. Now your phase-T tests should pass. 
+You can add more tests to .r2g/tests folder as desired. 
 
 __________________________________________________________________
 
+<br>
 
-You have now see how the basic three phases work, S,Z,T. They just have random character names.
-They should have been in alphabetical order, but S,Z,T is the order in which they are currently run.
+### In Conclusion:
+
+You have now seen how the basic three phases work, S,Z,T.
 
 <br>
 
