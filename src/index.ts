@@ -1,9 +1,14 @@
 'use strict';
 
-import {Subject} from 'rxjs';
+//core
 import * as cp from 'child_process';
 import * as fs from 'fs';
 import * as assert from 'assert';
+import * as path from 'path';
+
+//npm
+import {Subject} from 'rxjs';
+
 
 export const z = {
   async foo()  {
@@ -29,7 +34,7 @@ export const runZoom = (cb: EVCb<true>) => {
   
   const k = cp.spawn('bash');
   
-  fs.createReadStream('../assets/zoom.sh')
+  fs.createReadStream(path.resolve(__dirname + '/../assets/zoom.sh'))
   .pipe(k.stdin)
   .once('error', cb);
   
