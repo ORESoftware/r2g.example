@@ -16,7 +16,7 @@ See: https://github.com/ORESoftware/r2g
 Remember that r2g can catch 4 types of problems:
 
 1. Failure to build/transpile project before publishing, because the built files are not tracked by source control.
-2. Missing dependencies - when people install your package with the `--production` flag, your package might be missing deps.
+2. Missing dependencies - when people install your package with the `--production` and/or `--no-optional` flag, your package might be missing deps.
 3. Files that are missing in the NPM tarball: your [.npmignore](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) 
 file or ["files"](https://docs.npmjs.com/files/package.json#files) property in package.json might be too aggressive/passive.
 4. General/unknown problems that relate to using/running your package as a dependency, instead of directly.
@@ -27,11 +27,19 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 
 <br>
 
-1. <b> Clone this repo: `$ git clone https://github.com/ORESoftware/r2g.example.git` and run `npm i` </b>
+1. <b> Clone this repo: 
+
+>
+>`$ git clone https://github.com/ORESoftware/r2g.example.git` and run `npm i` </b>
+>
 
 <br>
 
-2. <b> Install r2g globally: `$ npm i -g r2g` </b>
+2. <b> Install r2g globally: 
+
+>
+>`$ npm i -g r2g` </b>
+>
 
 <br>
 
@@ -44,7 +52,7 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 
 <br>
  
-4. <b> Run `$ tsc --watch`, from the root of the project. `npm i -g typescript` if you don't have `tsc` installed.  </b>
+4. <b> Run `$ tsc --watch`, from the root of the project. Use `npm i -g typescript` if you don't have `tsc` installed.  </b>
 
 <br>
 
@@ -53,7 +61,7 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 >
 >  It should fail, with exit code 1.
 >
->  <b> It will output: </b> 
+>  <b> It will output something like: </b> 
 >
 >```
 >r2g: phase-S: You may have a missing dependency in your project, or a dependency that should be in "dependencies" not in "devDependencies".
@@ -89,7 +97,7 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 7. <b> Run `$ r2g test` </b>
 
 >
->  <b> It will output: </b>
+>  <b> It will output something like: </b>
 >
 >```
 >r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/copy/r2g.example/dist
@@ -101,7 +109,7 @@ file or ["files"](https://docs.npmjs.com/files/package.json#files) property in p
 8. <b> Go into test/simple.js and switch to `require('r2g.example')` instead of `require('../dist')`, then run `$ r2g test` </b>
 
 >
->  <b> It will output: </b>
+>  <b> It will output something like: </b>
 >
 >```
 >r2g: phase-Z: Directory path which contains the r2g.example index file: /home/you/.r2g/temp/project/node_modules/r2g.example/dist
