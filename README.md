@@ -18,9 +18,9 @@ Remember that r2g can catch at least 4 types of problems:
 1. Missing dependencies - when people install your package with the `--production` and/or `--no-optional` flag, your package might be missing deps.
 2. Source files that are missing in the NPM tarball: your [.npmignore](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) 
 file or ["files"](https://docs.npmjs.com/files/package.json#files) property in package.json might be too aggressive/passive.
-3. It is possible to check out a branch that has passed on a CI/CD platform but locally does not have the built/transpiled target files. This means the files will not make it into the tarball that gets published to NPM. 
-Testing with r2g locally before publishing a local branch means you avoid this problem, because if the target files are not built in your checked out branch, r2g tests will fail.
-4. General/unknown problems that relate to using/running your package as a dependency, instead of directly.
+3. Failing/forgetting to build on the current branch before publishing: It is possible to check out a VCS branch that has passed on a CI/CD platform but locally does not have the built/transpiled target files. This means the target files will not make it into the tarball that gets published to NPM. 
+This is probably more common when using TypeScript, but could also happen when creating a Node.js addon.
+4. General/unknown problems that relate to using/running your package as a dependency, instead of directly. Most likely problems relating to file paths.
 
 ---------------------
 
